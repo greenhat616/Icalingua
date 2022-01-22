@@ -1,26 +1,13 @@
 <template>
     <div class="root">
         <div class="head">
-            <el-popover
-                placement="right-end"
-                :title="username"
-                trigger="hover"
-                :content="`${account}`"
-            >
-                <a slot="reference" @click="$emit('chroom',account)" style="cursor: pointer;">
-                    <el-avatar
-                        :src="getAvatarUrl(account)"
-                    />
+            <el-popover placement="right-end" :title="username" trigger="hover" :content="`${account}`">
+                <a slot="reference" @click="$emit('chroom', account)" style="cursor: pointer">
+                    <el-avatar :src="getAvatarUrl(account)" />
                 </a>
             </el-popover>
-            <el-input
-                v-model="input"
-                placeholder="Search"
-                prefix-icon="el-icon-search"
-                class="input"
-                clearable
-            />
-            <span class="el-icon-user contacts-refresh" @click="$emit('show-contacts')"/>
+            <el-input v-model="input" placeholder="Search" prefix-icon="el-icon-search" class="input" clearable />
+            <span class="el-icon-user contacts-refresh" @click="$emit('show-contacts')" />
         </div>
         <div class="content">
             <RoomEntry
@@ -29,7 +16,10 @@
                 :room="room"
                 :selected="room.roomId === selected.roomId"
                 :priority="priority"
-                @click="input='';$emit('chroom', room)"
+                @click="
+                    input = ''
+                    $emit('chroom', room)
+                "
                 @contextmenu="roomMenu(room)"
             />
         </div>
@@ -80,26 +70,26 @@ export default {
 
 <style scoped lang="scss">
 .root {
-  border-right: var(--chat-border-style);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+    border-right: var(--chat-border-style);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 div.head {
-  background-color: var(--panel-header-bg);
-  height: 64px;
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
+    background-color: var(--panel-header-bg);
+    height: 64px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
 }
 
 .content {
-  overflow: overlay;
+    overflow: overlay;
 }
 
 .input {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 </style>

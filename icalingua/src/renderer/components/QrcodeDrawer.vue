@@ -8,17 +8,15 @@
         :wrapper-closable="false"
         size="100%"
     >
-        <img :src="image" alt="">
+        <img :src="image" alt="" />
         <center>
-            <el-button @click="$emit('login')" type="primary">
-                已扫码
-            </el-button>
+            <el-button @click="$emit('login')" type="primary"> 已扫码 </el-button>
         </center>
     </el-drawer>
 </template>
 
 <script>
-import {ipcRenderer} from 'electron'
+import { ipcRenderer } from 'electron'
 import ipc from '../utils/ipc'
 
 export default {
@@ -39,7 +37,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-
-</style>

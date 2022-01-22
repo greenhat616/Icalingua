@@ -9,6 +9,7 @@ import {app} from './expressProvider'
 import {version, protocolVersion} from '../package.json'
 import registerFileMgrHandler from '../handlers/registerFileMgrHandler'
 import gfsTokenManager from '../utils/gfsTokenManager'
+import fs from 'fs'
 
 type ClientRoles = 'main' | 'fileMgr'
 
@@ -24,7 +25,8 @@ io.on('connection', (socket) => {
     //客户端对这个服务器发来的时间用私钥签名给服务端验证
     const salt = md5(new Date().getTime().toString())
     socket.emit('requireAuth', salt, {
-        version, protocolVersion,
+        version,
+        protocolVersion,
     })
     socket.once('auth', async (sign: string, role: ClientRoles = 'main') => {
         switch (role) {
@@ -34,10 +36,8 @@ io.on('connection', (socket) => {
                     socket.emit('authSucceed')
                     socket.join('authed')
                     registerSocketHandlers(io, socket)
-                    if (loggedIn)
-                        adapter.sendOnlineData()
-                    else
-                        socket.emit('requestSetup', userConfig.account)
+                    if (loggedIn) adapter.sendOnlineData()
+                    else socket.emit('requestSetup', userConfig.account)
                 }
                 else {
                     console.log('客户端验证失败')
@@ -65,8 +65,16 @@ io.on('connection', (socket) => {
 const port = config.port || 6789
 const host = config.host || '0.0.0.0'
 
-export const init = () => httpServer.listen(port, host,
-    () => console.log(`listening on http://${host}:${port}`))
+export const init = () => {
+    if (config.unix) {
+        if (fs.existsSync(config.unix))
+            fs.unlinkSync(config.unix)
+        httpServer.listen(config.unix, () => console.log(`listening on Unix socket: ${config.unix}`))
+    }
+    else {
+        httpServer.listen(port, host, () => console.log(`listening on http://${host}:${port}`))
+    }
+}
 
 export const broadcast = (channel: string, data?: any) => io.to('authed').emit(channel, data)
 export const getClientsCount = () => io.sockets.sockets.size

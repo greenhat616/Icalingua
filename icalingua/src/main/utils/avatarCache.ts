@@ -1,4 +1,4 @@
-import {app} from 'electron'
+import { app } from 'electron'
 import axios from 'axios'
 import path from 'path'
 import fs from 'fs'
@@ -12,6 +12,7 @@ export default async (url: string): Promise<string> => {
     if (!file) {
         const res = await axios.get(url, {
             responseType: 'arraybuffer',
+            proxy: false,
         })
         file = path.join(dir, md5(url))
         fs.writeFileSync(file, res.data)

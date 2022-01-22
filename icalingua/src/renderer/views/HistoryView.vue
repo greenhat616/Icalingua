@@ -35,7 +35,7 @@
 
 <script>
 import Room from '../components/vac-mod/ChatWindow/Room/Room'
-import {ipcRenderer, remote} from 'electron'
+import { ipcRenderer, remote } from 'electron'
 import ipc from '../utils/ipc'
 import * as themes from '../utils/themes'
 
@@ -47,9 +47,9 @@ export default {
                 roomId: 0,
                 roomName: 'Forwarded Messages',
                 users: [
-                    {_id: 3, username: '3'},
-                    {_id: 31, username: '3'},
-                    {_id: 32, username: '3'},
+                    { _id: 3, username: '3' },
+                    { _id: 31, username: '3' },
+                    { _id: 32, username: '3' },
                 ],
             },
             messages: [],
@@ -86,48 +86,48 @@ export default {
 
 <style scoped>
 ::v-deep .vac-col-messages {
-  height: 100vh;
+    height: 100vh;
 }
 </style>
 
 <style lang="scss">
-@import "../components/vac-mod/styles/index.scss";
+@import '../components/vac-mod/styles/index.scss';
 
 .vac-card-window {
-  min-height: 100vh;
-  display: block;
-  background: var(--chat-content-bg-color);
-  color: var(--chat-color);
-  overflow-wrap: break-word;
-  position: relative;
-  white-space: normal;
-  border: var(--chat-container-border);
-  border-radius: var(--chat-container-border-radius);
-  box-shadow: var(--chat-container-box-shadow);
-  -webkit-tap-highlight-color: transparent;
+    min-height: 100vh;
+    display: block;
+    background: var(--chat-content-bg-color);
+    color: var(--chat-color);
+    overflow-wrap: break-word;
+    position: relative;
+    white-space: normal;
+    border: var(--chat-container-border);
+    border-radius: var(--chat-container-border-radius);
+    box-shadow: var(--chat-container-box-shadow);
+    -webkit-tap-highlight-color: transparent;
 
-  * {
-    font-family: inherit;
-  }
-
-  a {
-    color: #0d579c;
-    font-weight: 500;
-  }
-
-  .vac-chat-container {
-    height: 100%;
-    display: flex;
-
-    input {
-      min-width: 10px;
+    * {
+        font-family: inherit;
     }
 
-    textarea,
-    input[type="text"],
-    input[type="search"] {
-      -webkit-appearance: none;
+    a {
+        color: #0d579c;
+        font-weight: 500;
     }
-  }
+
+    .vac-chat-container {
+        height: 100%;
+        display: flex;
+
+        input {
+            min-width: 10px;
+        }
+
+        textarea,
+        input[type='text'],
+        input[type='search'] {
+            -webkit-appearance: none;
+        }
+    }
 }
 </style>

@@ -31,36 +31,36 @@ export default {
 </script>
 
 <style>
-@import url("./assets/stylesheet.css");
-@import url("./assets/scrollbar.css");
+@import url('./assets/stylesheet.css');
+@import url('./assets/scrollbar.css');
 
 @font-face {
-  font-family: "msyh";
-  src: url("./assets/msyh.ttf");
+    font-family: 'msyh';
+    src: url('./assets/msyh.ttf');
 }
 
 @font-face {
-  font-family: "twemoji";
-  src: url("./assets/Twemoji.ttf");
+    font-family: 'twemoji';
+    src: url('./assets/Twemoji.ttf');
 }
 
 html,
 body {
-  /*height: 100%;*/
-  width: 100%;
-  margin: 0;
-  color: #303133;
+    /*height: 100%;*/
+    width: 100%;
+    margin: 0;
+    color: #303133;
 }
 
 * {
-  font-family: font, "CircularSpotifyTxT Book Web", msyh, twemoji, "PingFang SC", sans-serif;
+    font-family: font, 'CircularSpotifyTxT Book Web', msyh, twemoji, 'PingFang SC', sans-serif;
 }
 
 :focus {
-  outline: none;
+    outline: none;
 }
 
 div#app {
-  -webkit-user-select: none;
+    -webkit-user-select: none;
 }
 </style>
